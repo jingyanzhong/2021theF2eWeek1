@@ -4,10 +4,19 @@ import { Swiper, SwiperSlide } from 'swiper/vue'
 import 'swiper/swiper-bundle.css'
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, Autoplay, A11y])
+
 export default {
   components: {
     Swiper,
     SwiperSlide
+  },
+  props: {
+    jData: {
+      type: Object,
+      default () {
+        return {}
+      }
+    }
   },
   data () {
     return {
@@ -38,57 +47,71 @@ export default {
         }
       }
     }
+  },
+  mounted () {
+    console.log(this.jData)
   }
 }
 </script>
 <template>
-    <swiper :slides-per-view="4" navigation :autoplay="autoplay" :breakpoints="breakpoints">
-        <swiper-slide class="slide">
-            <div class="swiperCard">
-                <slot name="img">
-                    <img src="../../img/swiper01.png" alt="陽明山國家公園">
-                </slot>
-                <slot name="textContent">
-                    <div class="textContent">
-                        <h4>陽明山國家公園</h4>
-                        <p>
-                            <img class="landMark" src="../../img/landMark.png" alt="地點icon">
-                            台北市北投區
-                        </p>
-                    </div>
-                </slot>
+    <swiper :slides-per-view="4" navigation :autoplay="false" :breakpoints="breakpoints">
+        <swiper-slide class="slide" v-for="(item, index) in jData" :key="index">
+            <div class="swiperImg">
+                <img class="swiperImg" :src="item.Picture.PictureUrl1" :alt="item.Picture.PictureDescription1">
+            </div>
+            <div class="swiperTextContent">
+                <h4>{{ item.RestaurantName }}</h4>
+                <p>
+                    <img class="landMark" src="../../img/landMark.png" alt="地點icon">
+                    {{ item.Address }}
+                </p>
             </div>
         </swiper-slide>
     </swiper>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .swiper-container {
     padding: 0 85px;
 }
 
-.swiperCard {
+.slide {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 24px;
     background: #fff;
-    margin-bottom: 41px;
+    height: auto;
+}
 
-    h4 {
+.swiperImg {
+    :deep img {
+        height: 280px;
+        object-fit: cover;
+
+    }
+}
+
+.swiperTextContent {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 20px 13px;
+
+    :deep(h4) {
         font-weight: $fw-b;
     }
 
-    .textContent {
-        padding: 20px 13px;
+    :deep(p) {
+        color: $secondary;
+        display: flex;
+        align-items: center;
+        margin-top: auto;
+    }
 
-        p {
-            color: $secondary;
-            display: flex;
-            align-items: center;
-        }
-
-        .landMark {
-            width: 14px;
-            height: 18px;
-            margin-right: 8px;
-        }
+    :deep(.landMark) {
+        width: 14px;
+        height: 18px;
+        margin-right: 8px;
     }
 }
 </style>

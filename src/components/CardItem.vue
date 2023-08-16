@@ -1,56 +1,99 @@
+<script>
+export default {
+  props: {
+    jData: {
+      type: Object,
+      default () {
+        return {}
+      }
+    }
+  },
+  methods: {
+    getProduct (id) {
+      this.$emit('get-product', id)
+    }
+  }
+}
+</script>
 <template>
-    <li class="cardItem">
-        <slot name="img">
-            <img src="../../img/img01.png" alt="">
-        </slot>
-        <div class="text">
-            <slot name="textContent">
-                <h4>新北勢歡樂耶誕成</h4>
-                <p><span>時間</span>2021/11/20-2021/12/30</p>
-                <p><span>地點</span>新北市板橋區</p>
-                <p>新北市歡樂耶誕城，是台灣新北市新板特區商圈的一系列耶誕節活動的總稱，首次舉辦是在2011......</p>
-                <a href="">活動詳情</a>
-            </slot>
-        </div>
+  <ul class="cardList">
+    <li class="cardItem" v-for="(item, index) in jData" :key="index">
+      <div class="cardImg">
+        <img v-if="!item.Picture.PictureUrl1" src="../../img/imgDefault.png" alt="預設圖片">
+        <img v-else :src="item.Picture.PictureUrl1" :alt="item.Picture.PictureDescription1">
+      </div>
+      <div class="text">
+        <h4>{{ item.ActivityName }}</h4>
+        <p><span>時間</span>{{ (item.StartTime).slice(0, 10) }} 至 {{ (item.EndTime).slice(0, 10) }}</p>
+        <p><span>地點</span>{{ item.Location }}</p>
+        <p class="description">{{ item.Description }}</p>
+        <a href="#" @click.prevent="getProduct(item.ActivityID)">活動詳情</a>
+      </div>
     </li>
+  </ul>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
+.cardList {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -10px;
+}
+
 .cardItem {
-    display: flex;
-    background: #fff;
-    width: calc(50% - 40px);
-    margin: 0 20px 54px;
+  position: relative;
+  // display: flex;
+  background: #fff;
+  width: calc(50% - 40px);
+  margin: 0 20px 54px;
 
-    img {
-        width: 355px;
-        height: 300px;
-        object-fit: cover;
+  .cardImg {
+    margin: 0 16px 0 0;
+    float: left;
+    background: url('../../img/imgDefault.png');
+
+    :deep(img) {
+      width: 355px;
+      height: 300px;
+      object-fit: cover;
+    }
+  }
+
+  :deep(.text) {
+    padding: 16px 21px;
+
+    // display: flex;
+    // flex-direction: column;
+    h4 {
+      margin-bottom: 10px;
     }
 
-    .text {
-        padding: 16px 21px;
-        display: flex;
-        flex-direction: column;
-
-        h4,
-        span {
-            font-weight: $fw-b;
-        }
-
-        span {
-            padding-right: 7px;
-        }
-
-        a {
-            display: inline-block;
-            background: $secondary;
-            border-radius: $radius-m;
-            text-align: center;
-            color: #fff;
-            padding: 5px 34px;
-            margin-top: auto;
-            align-self: flex-end;
-        }
+    h4,
+    span {
+      font-weight: $fw-b;
     }
-}</style>
+
+    span {
+      padding-right: 7px;
+    }
+
+    .description {
+      margin-top: 10px;
+      padding-bottom: 60px;
+    }
+
+    a {
+      position: absolute;
+      display: inline-block;
+      background: $secondary;
+      border-radius: $radius-m;
+      text-align: center;
+      color: #fff;
+      padding: 5px 34px;
+      margin-top: 16px;
+      bottom: 16px;
+      right: 20px;
+    }
+  }
+}
+</style>
