@@ -24,6 +24,9 @@ export default {
       </div>
       <div class="text">
         <h4>{{ item.ActivityName }}</h4>
+        <p v-if="item.City" class="city">
+          <img src="../../img/landMark.png" alt="地標icon">{{ item.City }}
+        </p>
         <p><span>時間</span>{{ (item.StartTime).slice(0, 10) }} 至 {{ (item.EndTime).slice(0, 10) }}</p>
         <p><span>地點</span>{{ item.Location }}</p>
         <p class="description">{{ item.Description }}</p>
@@ -61,7 +64,6 @@ export default {
 
   :deep(.text) {
     padding: 16px 21px;
-
     // display: flex;
     // flex-direction: column;
     h4 {
@@ -76,7 +78,18 @@ export default {
     span {
       padding-right: 7px;
     }
-
+    .city {
+      display: flex;
+      align-items: center;
+      font-size:$fz-m;
+      color: $primary;
+      font-weight: $fw-b;
+      margin-bottom: 8px;
+      img {
+        width: 12px;
+        margin-right: 4px;
+      }
+    }
     .description {
       margin-top: 10px;
       padding-bottom: 60px;

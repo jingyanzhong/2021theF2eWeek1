@@ -24,7 +24,7 @@ import { RouterLink, RouterView } from 'vue-router'
       </ul>
     </div>
   </nav>
-  <RouterView />
+  <router-view :key="$route.fullPath"></router-view>
   <footer class="footer">
     Copyright@2021
   </footer>
