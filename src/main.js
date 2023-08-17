@@ -15,4 +15,8 @@ app.use(createPinia())
 app.use(router)
 app.use(VueAxios, axios)
 
+router.afterEach((to, from, next) => {
+  window.scrollTo(0, 0)
+})
+
 app.mount('#app')

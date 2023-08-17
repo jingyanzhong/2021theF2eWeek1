@@ -16,6 +16,7 @@ export default {
   methods: {
     switchPage (pages) {
       this.pagination.currentPage = pages
+      this.goToTop()
       this.disabled()
       this.filterShowData()
     },
@@ -25,6 +26,7 @@ export default {
       } else {
         this.pagination.currentPage = this.pagination.currentPage - 1
       }
+      this.goToTop()
       this.disabled()
       this.filterShowData()
     },
@@ -34,6 +36,7 @@ export default {
       } else {
         this.pagination.currentPage = this.pagination.currentPage + 1
       }
+      this.goToTop()
       this.disabled()
       this.filterShowData()
     },
@@ -43,6 +46,12 @@ export default {
     },
     filterShowData () {
       this.$emit('filter-data', this.pagination.currentPage)
+    },
+    goToTop () {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      })
     }
   }
 }

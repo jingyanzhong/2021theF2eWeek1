@@ -62,7 +62,7 @@ export default {
 </script>
 <template>
   <main>
-    <HeroBanner />
+    <HeroBanner :title="'精選活動'" :img="'banner5'"></HeroBanner>
     <div class="container">
       <label for="areaSearch" class="areaSearchLabel">
         <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="searchIcon bi bi-search"

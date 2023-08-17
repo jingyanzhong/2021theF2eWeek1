@@ -23,14 +23,26 @@ const router = createRouter({
       component: () => import('../views/SpotsView.vue')
     },
     {
+      path: '/spots/:spotsId',
+      component: () => import('../views/SpotsList.vue')
+    },
+    {
       path: '/foods',
       name: 'foods',
       component: () => import('../views/FoodsView.vue')
     },
     {
+      path: '/foods/:foodsId',
+      component: () => import('../views/FoodsList.vue')
+    },
+    {
       path: '/hotel',
       name: 'hotel',
       component: () => import('../views/HotelView.vue')
+    },
+    {
+      path: '/hotel/:hotelId',
+      component: () => import('../views/HotelList.vue')
     }
   ]
 })

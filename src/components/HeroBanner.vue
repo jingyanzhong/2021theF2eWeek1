@@ -1,12 +1,20 @@
+<script>
+export default {
+  props: {
+    title: {
+      type: String
+    },
+    img: {
+      type: String
+    }
+  }
+}
+</script>
 <template>
-    <div class="hero">
-        <slot name="title">
-            <h2>精選活動</h2>
-        </slot>
-        <slot name="bg-img">
-            <img src="../../img/banner5.png" alt="精選活動banner">
-        </slot>
-    </div>
+  <div class="hero">
+    <h2>{{ title }}</h2>
+    <img :src="`../../img/${img}.png`" :alt="`${title}banner`">
+  </div>
 </template>
 
 <style lang="scss">
