@@ -60,6 +60,60 @@ export default {
         case '新北':
           area = 'NewTaipei'
           break
+        case '桃園':
+          area = 'Taoyuan'
+          break
+        case '新竹':
+          area = 'Hsinchu'
+          break
+        case '苗栗':
+          area = 'MiaoliCounty'
+          break
+        case '台中':
+          area = 'Taichung'
+          break
+        case '彰化':
+          area = 'ChanghuaCounty'
+          break
+        case '雲林':
+          area = 'YunlinCounty'
+          break
+        case '嘉義':
+          area = 'ChiayiCounty'
+          break
+        case '台南':
+          area = 'Tainan'
+          break
+        case '高雄':
+          area = 'Kaohsiung'
+          break
+        case '屏東':
+          area = 'PingtungCounty'
+          break
+        case '基隆':
+          area = 'Keelung'
+          break
+        case '宜蘭':
+          area = 'YilanCounty'
+          break
+        case '花蓮':
+          area = 'HualienCounty'
+          break
+        case '台東':
+          area = 'TaitungCounty'
+          break
+        case '南投':
+          area = 'NantouCounty'
+          break
+        case '澎湖':
+          area = 'PenghuCounty'
+          break
+        case '連江':
+          area = 'LienchiangCounty'
+          break
+        case '金門':
+          area = 'KinmenCounty'
+          break
       }
       if (area === '') {
         this.getData()
