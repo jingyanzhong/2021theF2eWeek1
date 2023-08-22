@@ -1,4 +1,8 @@
 <script>
+import { mapState, mapActions } from 'pinia'
+import statusStore from '../stores/statusStore.js'
+import renderStore from '../stores/renderStore.js'
+import filterStore from '../stores/filterStore.js'
 import SpotsCard from '../components/SpotsCard.vue'
 import HeroBanner from '../components/HeroBanner.vue'
 import paginationComponent from '../components/paginationComponent.vue'
@@ -11,137 +15,26 @@ export default {
     paginationComponent,
     LoadingComponent
   },
-  data () {
-    return {
-      spotsData: [],
-      page: {
-        totalPage: 0,
-        hasPage: false,
-        nextPage: true,
-        currentPage: 1,
-        prePage: 20,
-        showPageStart: '',
-        showPageEnd: ''
-      },
-      nowData: [],
-      filterData: [],
-      areaSearch: '',
-      isLoading: false
-    }
+  computed: {
+    ...mapState(statusStore, ['isLoading']),
+    ...mapState(renderStore, ['page', 'jData', 'filterData']),
+    ...mapState(filterStore, ['areaSearch'])
   },
   methods: {
-    getData () {
-      this.isLoading = true
-      const api = `${import.meta.env.VITE_APP_API}${import.meta.env.VITE_APP_SPOT}?$format=JSON`
-      this.$http.get(api).then((res) => {
-        this.spotsData = res.data
-        this.filterShowData()
-        this.isLoading = false
-      })
-    },
-    showPage () {
-      const totalPage = Math.ceil(this.spotsData.length / 20)
-      this.page.totalPage = totalPage
-    },
-    filterShowData (page = 1) {
-      this.filterData = []
-      this.page.showPageStart = this.page.currentPage - 3
-      this.page.showPageEnd = this.page.currentPage + 3
-      const minData = (page * this.page.prePage) - this.page.prePage
-      const maxData = (page * this.page.prePage) - 1
-      this.spotsData.forEach((item, index) => {
-        if (index >= minData && index <= maxData) {
-          this.filterData.push(item)
-        }
-      })
-      this.showPage()
-    },
-    filterArea () {
-      let area = ''
-      switch (this.areaSearch) {
-        case '台北':
-          area = 'Taipei'
-          break
-        case '新北':
-          area = 'NewTaipei'
-          break
-        case '桃園':
-          area = 'Taoyuan'
-          break
-        case '新竹':
-          area = 'Hsinchu'
-          break
-        case '苗栗':
-          area = 'MiaoliCounty'
-          break
-        case '台中':
-          area = 'Taichung'
-          break
-        case '彰化':
-          area = 'ChanghuaCounty'
-          break
-        case '雲林':
-          area = 'YunlinCounty'
-          break
-        case '嘉義':
-          area = 'ChiayiCounty'
-          break
-        case '台南':
-          area = 'Tainan'
-          break
-        case '高雄':
-          area = 'Kaohsiung'
-          break
-        case '屏東':
-          area = 'PingtungCounty'
-          break
-        case '基隆':
-          area = 'Keelung'
-          break
-        case '宜蘭':
-          area = 'YilanCounty'
-          break
-        case '花蓮':
-          area = 'HualienCounty'
-          break
-        case '台東':
-          area = 'TaitungCounty'
-          break
-        case '南投':
-          area = 'NantouCounty'
-          break
-        case '澎湖':
-          area = 'PenghuCounty'
-          break
-        case '連江':
-          area = 'LienchiangCounty'
-          break
-        case '金門':
-          area = 'KinmenCounty'
-          break
-      }
-      if (area === '') {
-        this.getData()
-      }
-
-      const api = `${import.meta.env.VITE_APP_API}${import.meta.env.VITE_APP_SPOT}/${area}?$format=JSON`
-      this.$http.get(api).then((res) => {
-        this.spotsData = res.data
-        this.filterShowData()
-      })
-    },
+    ...mapActions(renderStore, ['showPage', 'filterShowData', 'getAllSpotsData']),
+    ...mapActions(filterStore, ['filterArea']),
     getProduct (id) {
       this.$router.push(`/spots/${id}`)
     }
   },
   created () {
-    this.getData()
+    this.getAllSpotsData()
   }
 }
 </script>
 <template>
   <LoadingComponent :isLoading="isLoading"></LoadingComponent>
-  <main>
+  <main v-show="!isLoading">
     <HeroBanner :title="'全台景點'" :img="'banner2'"></HeroBanner>
     <div class="container">
       <label for="areaSearch" class="areaSearchLabel">
@@ -150,8 +43,8 @@ export default {
           <path
             d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
         </svg>
-        <input type="search" name="areaSearch" id="areaSearch" placeholder="所有縣市" v-model="areaSearch"
-          @keyup.enter="filterArea()">
+        <input type="search" name="areaSearch" id="areaSearch" placeholder="所有縣市" :value="areaSearch"
+          @keyup.enter="(evt) => filterArea('spot' ,evt)">
       </label>
       <div class="category">
         <ul class="categoryList">

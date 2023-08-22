@@ -27,7 +27,7 @@ export default {
         <p v-if="item.City" class="city">
           <img src="../../img/landMark.png" alt="地標icon">{{ item.City }}
         </p>
-        <p><span>時間</span>{{ (item.StartTime).slice(0, 10) }} 至 {{ (item.EndTime).slice(0, 10) }}</p>
+        <p v-if="item.StartTime"><span>時間</span>{{ (item.StartTime).slice(0, 10) }} 至 {{ (item.EndTime).slice(0, 10) }}</p>
         <p><span>地點</span>{{ item.Location }}</p>
         <p class="description">{{ item.Description }}</p>
         <a href="#" @click.prevent="getProduct(item.ActivityID)">活動詳情</a>

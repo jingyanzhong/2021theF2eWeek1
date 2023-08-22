@@ -2,6 +2,7 @@
 import { mapState, mapActions } from 'pinia'
 import statusStore from '../stores/statusStore'
 import renderStore from '../stores/renderStore'
+import filterStore from '../stores/filterStore.js'
 import FoodsCard from '../components/FoodsCard.vue'
 import HeroBanner from '../components/HeroBanner.vue'
 import paginationComponent from '../components/paginationComponent.vue'
@@ -14,56 +15,15 @@ export default {
     paginationComponent,
     LoadingComponent
   },
-  data () {
-    return {
-      // foodsData: [],
-      // page: {
-      //   totalPage: 0,
-      //   hasPage: false,
-      //   nextPage: true,
-      //   currentPage: 1,
-      //   prePage: 20,
-      //   showPageStart: '',
-      //   showPageEnd: ''
-      // },
-      // filterData: [],
-      // isLoading: false
-    }
-  },
   computed: {
     ...mapState(statusStore, ['isLoading']),
-    ...mapState(renderStore, ['page', 'jData', 'filterData'])
+    ...mapState(renderStore, ['page', 'jData', 'filterData']),
+    ...mapState(filterStore, ['areaSearch'])
   },
   methods: {
     ...mapActions(renderStore, ['showPage', 'filterShowData', 'getAllFoodsData']),
-    // getData () {
-    //   this.isLoading = true
-    //   const api = `${import.meta.env.VITE_APP_API}${import.meta.env.VITE_APP_FOODS}?$format=JSON`
-    //   this.$http.get(api).then((res) => {
-    //     this.foodsData = res.data
-    //     console.log(this.foodsData)
-    //     this.showPage()
-    //     this.filterShowData()
-    //     this.isLoading = false
-    //   })
-    // },
-    // showPage () {
-    //   const totalPage = Math.ceil(this.foodsData.length / 20)
-    //   this.page.totalPage = totalPage
-    //   console.log(this.page)
-    // },
-    // filterShowData (page = 1) {
-    //   this.filterData = []
-    //   this.page.showPageStart = this.page.currentPage - 3
-    //   this.page.showPageEnd = this.page.currentPage + 3
-    //   const minData = (page * this.page.prePage) - this.page.prePage
-    //   const maxData = (page * this.page.prePage) - 1
-    //   this.foodsData.forEach((item, index) => {
-    //     if (index >= minData && index <= maxData) {
-    //       this.filterData.push(item)
-    //     }
-    //   })
-    // },
+    ...mapActions(filterStore, ['filterArea']),
+
     getProduct (id) {
       this.$router.push(`/foods/${id}`)
     }
@@ -75,7 +35,7 @@ export default {
 </script>
 <template>
   <LoadingComponent :isLoading="isLoading"></LoadingComponent>
-  <main>
+  <main v-show="!isLoading">
     <HeroBanner :title="'探索美食'" :img="'banner3'"></HeroBanner>
     <div class="container">
       <label for="areaSearch" class="areaSearchLabel">
@@ -84,7 +44,8 @@ export default {
           <path
             d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
         </svg>
-        <input type="search" name="areaSearch" id="areaSearch" placeholder="所有縣市">
+        <input type="search" name="areaSearch" id="areaSearch" placeholder="所有縣市" :value="areaSearch"
+          @keyup.enter="(evt) => filterArea('foods' ,evt)">
       </label>
       <div class="category">
         <ul class="categoryList">

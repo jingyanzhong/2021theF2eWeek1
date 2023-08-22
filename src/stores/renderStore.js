@@ -5,7 +5,7 @@ import statusStore from '../stores/statusStore'
 
 const status = statusStore()
 // const getData = getDataStore()
-export default defineStore('paginationStore', {
+export default defineStore('renderStore', {
   state: () => ({
     jData: [],
     filterData: [],
@@ -20,12 +20,31 @@ export default defineStore('paginationStore', {
     }
   }),
   actions: {
+    getAllActivityData () {
+      status.isLoading = true
+      const api = `${import.meta.env.VITE_APP_API}${import.meta.env.VITE_APP_ACTIVITY}?$format=JSON`
+      axios.get(api).then((res) => {
+        this.jData = res.data
+        this.showPage()
+        this.filterShowData()
+        status.isLoading = false
+      })
+    },
+    getAllSpotsData () {
+      status.isLoading = true
+      const api = `${import.meta.env.VITE_APP_API}${import.meta.env.VITE_APP_SPOT}?$format=JSON`
+      axios.get(api).then((res) => {
+        this.jData = res.data
+        this.showPage()
+        this.filterShowData()
+        status.isLoading = false
+      })
+    },
     getAllHotelData () {
       status.isLoading = true
       const api = `${import.meta.env.VITE_APP_API}${import.meta.env.VITE_APP_HOTEL}?$format=JSON`
       axios.get(api).then((res) => {
         this.jData = res.data
-        console.log(this.jData)
         this.showPage()
         this.filterShowData()
         status.isLoading = false
@@ -36,7 +55,6 @@ export default defineStore('paginationStore', {
       const api = `${import.meta.env.VITE_APP_API}${import.meta.env.VITE_APP_FOODS}?$format=JSON`
       axios.get(api).then((res) => {
         this.jData = res.data
-        console.log(this.jData)
         this.showPage()
         this.filterShowData()
         status.isLoading = false
@@ -45,10 +63,10 @@ export default defineStore('paginationStore', {
     showPage () {
       const totalPage = Math.ceil(this.jData.length / 20)
       this.page.totalPage = totalPage
-      console.log(this.page)
     },
     filterShowData (page = 1) {
       this.filterData = []
+      this.page.currentPage = page
       this.page.showPageStart = page - 3
       this.page.showPageEnd = page + 3
       const minData = (page * this.page.prePage) - this.page.prePage

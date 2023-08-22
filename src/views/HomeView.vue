@@ -27,15 +27,15 @@ export default {
       const restaurantApi = `${import.meta.env.VITE_APP_API}${import.meta.env.VITE_APP_FOODS}?$filter=Picture/PictureUrl1 ne null&$top=12&$format=JSON`
       this.$http.get(api).then((res) => {
         this.jData = res.data
-        console.log(this.jData)
+        // console.log(this.jData)
       })
       this.$http.get(spotApi).then((res) => {
         this.spotData = res.data
-        console.log(this.spotData)
+        // console.log(this.spotData)
       })
       this.$http.get(restaurantApi).then((res) => {
         this.restaurantData = res.data
-        console.log(this.restaurantData)
+        // console.log(this.restaurantData)
       })
       if (this.jData && this.spotData && this.restaurantData) {
         this.isLoading = false
