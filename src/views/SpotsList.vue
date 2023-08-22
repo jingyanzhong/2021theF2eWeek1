@@ -37,7 +37,7 @@ export default {
 <template>
   <main>
     <div class="container">
-      <section>
+      <section v-if="spotsData[0]">
         <div class="swiperImg">
           <img v-if="!spotsData[0].Picture.PictureUrl1" src="../../img/imgDefault.png" alt="預設圖片">
           <SwiperThumbs v-else :imgs="spotsData[0].Picture"></SwiperThumbs>
@@ -66,7 +66,7 @@ export default {
           <p>{{ spotsData[0].TravelInfo }}</p>
         </div>
       </section>
-      <section class="swiperOther">
+      <section class="swiperOther" v-if="spotsData[0]">
         <h4>
           <img src="../../img/goodIcon.png" alt="其他推薦icon">
           其他推薦</h4>

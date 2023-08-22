@@ -50,33 +50,31 @@ export default {
     }
   },
   methods: {
-    getOtherActivity () {
-      const api = `${import.meta.env.VITE_APP_API}${import.meta.env.VITE_APP_ACTIVITY}?$filter=contains(City, '${this.city}')&$top=15&$format=JSON`
+    getOtherFoods () {
+      const api = `${import.meta.env.VITE_APP_API}${import.meta.env.VITE_APP_FOODS}?$filter=contains(Address, '${this.city}')&$top=15&$format=JSON`
       this.$http.get(api).then((res) => {
         this.otherData = res.data
-        console.log(this.otherData)
       })
     },
     getProduct (id) {
-      this.$router.push(`/activity/${id}`)
+      this.$router.push(`/foods/${id}`)
     }
   },
   created () {
-    this.getOtherActivity()
-    console.log(this.titleName)
+    this.getOtherFoods()
   }
 }
 </script>
 <template>
     <swiper :slides-per-view="3" navigation :autoplay="false" :breakpoints="breakpoints">
         <swiper-slide class="slide" v-for="(item, index) in otherData" :key="index">
-            <a href="#" @click.prevent="getProduct(item.ActivityID)">
+            <a href="#" @click.prevent="getProduct(item.RestaurantID)">
                 <div class="swiperImg">
                     <img v-if="!item.Picture.PictureUrl1" src="../../img/imgDefault.png" alt="預設圖片">
                     <img v-else class="swiperImg" :src="item.Picture.PictureUrl1" :alt="item.Picture.PictureDescription1">
                 </div>
                 <div class="swiperTextContent">
-                    <h4 v-if="titleName === 'ActivityName'">{{ item.ActivityName }}</h4>
+                    <h4>{{ item.RestaurantName }}</h4>
                     <p>
                         <img class="landMark" src="../../img/landMark.png" alt="地點icon">
                         {{ item.Address }}

@@ -2,30 +2,34 @@
 import HomeHero from '../components/HomeHero.vue'
 import CardItem from '../components/CardItem.vue'
 import SwiperCard from '../components/SwiperCard.vue'
+import LoadingComponent from '../components/loadingComponent.vue'
 
 export default {
   components: {
     HomeHero,
     CardItem,
-    SwiperCard
+    SwiperCard,
+    LoadingComponent
   },
   data () {
     return {
       jData: [],
       spotData: [],
-      restaurantData: []
+      restaurantData: [],
+      isLoading: false
     }
   },
   methods: {
     getData () {
+      this.isLoading = true
       const api = `${import.meta.env.VITE_APP_API}${import.meta.env.VITE_APP_ACTIVITY}?$filter=Picture/PictureUrl1 ne null&$top=4&$format=JSON`
-      const spotlApi = `${import.meta.env.VITE_APP_API}${import.meta.env.VITE_APP_SPOT}?$filter=Picture/PictureUrl1 ne null&$top=12&$format=JSON`
-      const restaurantApi = `${import.meta.env.VITE_APP_API}${import.meta.env.VITE_APP_RESTAURANT}?$filter=Picture/PictureUrl1 ne null&$top=12&$format=JSON`
+      const spotApi = `${import.meta.env.VITE_APP_API}${import.meta.env.VITE_APP_SPOT}?$filter=Picture/PictureUrl1 ne null&$top=12&$format=JSON`
+      const restaurantApi = `${import.meta.env.VITE_APP_API}${import.meta.env.VITE_APP_FOODS}?$filter=Picture/PictureUrl1 ne null&$top=12&$format=JSON`
       this.$http.get(api).then((res) => {
         this.jData = res.data
         console.log(this.jData)
       })
-      this.$http.get(spotlApi).then((res) => {
+      this.$http.get(spotApi).then((res) => {
         this.spotData = res.data
         console.log(this.spotData)
       })
@@ -33,6 +37,9 @@ export default {
         this.restaurantData = res.data
         console.log(this.restaurantData)
       })
+      if (this.jData && this.spotData && this.restaurantData) {
+        this.isLoading = false
+      }
     },
     getProduct (id) {
       this.$router.push(`/activity/${id}`)
@@ -45,6 +52,7 @@ export default {
 </script>
 
 <template>
+  <LoadingComponent :isLoading="isLoading"></LoadingComponent>
   <main>
     <HomeHero />
     <div class="container">

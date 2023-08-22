@@ -2,12 +2,14 @@
 import SpotsCard from '../components/SpotsCard.vue'
 import HeroBanner from '../components/HeroBanner.vue'
 import paginationComponent from '../components/paginationComponent.vue'
+import LoadingComponent from '../components/loadingComponent.vue'
 
 export default {
   components: {
     SpotsCard,
     HeroBanner,
-    paginationComponent
+    paginationComponent,
+    LoadingComponent
   },
   data () {
     return {
@@ -23,15 +25,18 @@ export default {
       },
       nowData: [],
       filterData: [],
-      areaSearch: ''
+      areaSearch: '',
+      isLoading: false
     }
   },
   methods: {
     getData () {
+      this.isLoading = true
       const api = `${import.meta.env.VITE_APP_API}${import.meta.env.VITE_APP_SPOT}?$format=JSON`
       this.$http.get(api).then((res) => {
         this.spotsData = res.data
         this.filterShowData()
+        this.isLoading = false
       })
     },
     showPage () {
@@ -135,6 +140,7 @@ export default {
 }
 </script>
 <template>
+  <LoadingComponent :isLoading="isLoading"></LoadingComponent>
   <main>
     <HeroBanner :title="'全台景點'" :img="'banner2'"></HeroBanner>
     <div class="container">

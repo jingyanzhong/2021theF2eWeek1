@@ -2,12 +2,14 @@
 import CardItem from '../components/CardItem.vue'
 import HeroBanner from '../components/HeroBanner.vue'
 import paginationComponent from '../components/paginationComponent.vue'
+import LoadingComponent from '../components/loadingComponent.vue'
 
 export default {
   components: {
     CardItem,
     HeroBanner,
-    paginationComponent
+    paginationComponent,
+    LoadingComponent
   },
   data () {
     return {
@@ -21,17 +23,20 @@ export default {
         showPageStart: '',
         showPageEnd: ''
       },
-      filterData: []
+      filterData: [],
+      isLoading: false
     }
   },
   methods: {
     getData () {
+      this.isLoading = true
       const api = `${import.meta.env.VITE_APP_API}${import.meta.env.VITE_APP_ACTIVITY}?$format=JSON`
       this.$http.get(api).then((res) => {
         this.activityData = res.data
         console.log(this.activityData)
         this.showPage()
         this.filterShowData()
+        this.isLoading = false
       })
     },
     showPage () {
@@ -61,6 +66,7 @@ export default {
 }
 </script>
 <template>
+  <LoadingComponent :isLoading="isLoading"></LoadingComponent>
   <main>
     <HeroBanner :title="'精選活動'" :img="'banner5'"></HeroBanner>
     <div class="container">

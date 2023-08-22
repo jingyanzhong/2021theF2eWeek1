@@ -12,10 +12,7 @@ export default {
   },
   props: {
     city: {
-      type: Object,
-      default () {
-        return {}
-      }
+      type: String
     },
     titleName: {
       type: String
