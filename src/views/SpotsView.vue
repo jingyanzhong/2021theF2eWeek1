@@ -8,6 +8,8 @@ import HeroBanner from '../components/HeroBanner.vue'
 import paginationComponent from '../components/paginationComponent.vue'
 import LoadingComponent from '../components/loadingComponent.vue'
 
+const filter = filterStore()
+
 export default {
   components: {
     SpotsCard,
@@ -22,13 +24,14 @@ export default {
   },
   methods: {
     ...mapActions(renderStore, ['showPage', 'filterShowData', 'getAllSpotsData']),
-    ...mapActions(filterStore, ['filterArea']),
+    ...mapActions(filterStore, ['filterArea', 'filterClass']),
     getProduct (id) {
       this.$router.push(`/spots/${id}`)
     }
   },
   created () {
     this.getAllSpotsData()
+    filter.areaSearch = ''
   }
 }
 </script>
@@ -67,11 +70,18 @@ export default {
             <path fill-rule="evenodd"
               d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm-3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
           </svg>
-          <select name="" id="">
+          <select name="" id="" @change="(evt) => filterClass(jData, evt)">
             <option value="" selected disabled>主題分類</option>
-            <option value="熱門活動">熱門活動</option>
-            <option value="近期活動">近期活動</option>
-            <option value="傳統節慶">傳統節慶</option>
+            <option value="生態類">生態類</option>
+            <option value="遊憩類">遊憩類</option>
+            <option value="文化類">文化類</option>
+            <option value="藝術類">藝術類</option>
+            <option value="古蹟類">古蹟類</option>
+            <option value="休閒農業類">休閒農業類</option>
+            <option value="自然風景類">自然風景類</option>
+            <option value="觀光工廠類">觀光工廠類</option>
+            <option value="都會公園類">都會公園類</option>
+            <option value="體育健身類">體育健身類</option>
             <option value="原住民活動">原住民活動</option>
           </select>
         </div>

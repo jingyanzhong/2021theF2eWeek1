@@ -8,6 +8,8 @@ import HeroBanner from '../components/HeroBanner.vue'
 import paginationComponent from '../components/paginationComponent.vue'
 import LoadingComponent from '../components/loadingComponent.vue'
 
+const filter = filterStore()
+
 export default {
   components: {
     FoodsCard,
@@ -22,7 +24,7 @@ export default {
   },
   methods: {
     ...mapActions(renderStore, ['showPage', 'filterShowData', 'getAllFoodsData']),
-    ...mapActions(filterStore, ['filterArea']),
+    ...mapActions(filterStore, ['filterArea', 'filterClass']),
 
     getProduct (id) {
       this.$router.push(`/foods/${id}`)
@@ -30,6 +32,7 @@ export default {
   },
   created () {
     this.getAllFoodsData()
+    filter.areaSearch = ''
   }
 }
 </script>
@@ -68,12 +71,16 @@ export default {
             <path fill-rule="evenodd"
               d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm-3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
           </svg>
-          <select name="" id="">
+          <select name="" id="" @change="(evt) => filterClass(jData, evt)">
             <option value="" selected disabled>主題分類</option>
-            <option value="熱門活動">熱門活動</option>
-            <option value="近期活動">近期活動</option>
-            <option value="傳統節慶">傳統節慶</option>
-            <option value="原住民活動">原住民活動</option>
+            <option value="地方特產">地方特產</option>
+            <option value="異國料理">異國料理</option>
+            <option value="火烤料理">火烤料理</option>
+            <option value="甜點冰品">甜點冰品</option>
+            <option value="中式美食">中式美食</option>
+            <option value="伴手禮">伴手禮</option>
+            <option value="素食">素食</option>
+            <option value="原住民活動">其他</option>
           </select>
         </div>
       </div>

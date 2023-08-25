@@ -6,7 +6,8 @@ const render = renderStore()
 // const getData = getDataStore()
 export default defineStore('filterStore', {
   state: () => ({
-    areaSearch: '123'
+    areaSearch: '',
+    class: ''
   }),
   actions: {
     filterArea (name, event) {
@@ -84,15 +85,20 @@ export default defineStore('filterStore', {
         this.getHotelAreaData(area)
       }
     },
+    filterClass (data, event) {
+      this.class = event.target.value
+      const newData = data.filter(item => {
+        return item.Class === this.class || item.Class1 === this.class || item.Class2 === this.class || item.Class3 === this.class
+      })
+      render.showPage(newData)
+    },
     getActivityAreaData (area) {
       if (area === '') {
         render.getAllActivityData()
       }
       const api = `${import.meta.env.VITE_APP_API}${import.meta.env.VITE_APP_ACTIVITY}/${area}?$format=JSON`
       axios.get(api).then((res) => {
-        render.jData = res.data
-        render.showPage()
-        render.filterShowData()
+        render.showPage(res.data)
       })
     },
     getSpotAreaData (area) {
@@ -101,9 +107,7 @@ export default defineStore('filterStore', {
       }
       const api = `${import.meta.env.VITE_APP_API}${import.meta.env.VITE_APP_SPOT}/${area}?$format=JSON`
       axios.get(api).then((res) => {
-        render.jData = res.data
-        render.showPage()
-        render.filterShowData()
+        render.showPage(res.data)
       })
     },
     getFoodsAreaData (area) {
@@ -112,9 +116,7 @@ export default defineStore('filterStore', {
       }
       const api = `${import.meta.env.VITE_APP_API}${import.meta.env.VITE_APP_FOODS}/${area}?$format=JSON`
       axios.get(api).then((res) => {
-        render.jData = res.data
-        render.showPage()
-        render.filterShowData()
+        render.showPage(res.data)
       })
     },
     getHotelAreaData (area) {
@@ -123,9 +125,7 @@ export default defineStore('filterStore', {
       }
       const api = `${import.meta.env.VITE_APP_API}${import.meta.env.VITE_APP_HOTEL}/${area}?$format=JSON`
       axios.get(api).then((res) => {
-        render.jData = res.data
-        render.showPage()
-        render.filterShowData()
+        render.showPage(res.data)
       })
     }
   }
