@@ -13,7 +13,7 @@ export default {
 <template>
   <div class="hero">
     <h2>{{ title }}</h2>
-    <img :src="`../../img/${img}.png`" :alt="`${title}banner`">
+    <img :src="`img/${img}.png`" :alt="`${title}banner`">
   </div>
 </template>
 

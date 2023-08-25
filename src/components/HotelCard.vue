@@ -19,7 +19,7 @@ export default {
   <ul class="cardList">
     <li class="cardItem" v-for="(item, index) in jData" :key="index">
       <div class="cardImg">
-        <img v-if="!item.Picture.PictureUrl1" src="../../img/imgDefault.png" alt="預設圖片">
+        <img v-if="!item.Picture.PictureUrl1" src="/img/imgDefault.png" alt="預設圖片">
         <img v-else :src="item.Picture.PictureUrl1" :alt="item.Picture.PictureDescription1">
       </div>
       <div class="text">
@@ -53,7 +53,7 @@ export default {
   .cardImg {
     margin: 0 16px 0 0;
     float: left;
-    background: url('../../img/imgDefault.png');
+    background: url('/img/imgDefault.png');
 
     :deep(img) {
       width: 355px;

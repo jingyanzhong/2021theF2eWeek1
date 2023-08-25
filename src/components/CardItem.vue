@@ -19,13 +19,13 @@ export default {
   <ul class="cardList">
     <li class="cardItem" v-for="(item, index) in jData" :key="index">
       <div class="cardImg">
-        <img v-if="!item.Picture.PictureUrl1" src="../../img/imgDefault.png" alt="預設圖片">
+        <img v-if="!item.Picture.PictureUrl1" src="/img/imgDefault.png" alt="預設圖片">
         <img v-else :src="item.Picture.PictureUrl1" :alt="item.Picture.PictureDescription1">
       </div>
       <div class="text">
         <h4>{{ item.ActivityName }}</h4>
         <p v-if="item.City" class="city">
-          <img src="../../img/landMark.png" alt="地標icon">{{ item.City }}
+          <img src="/img/landMark.png" alt="地標icon">{{ item.City }}
         </p>
         <p v-if="item.StartTime"><span>時間</span>{{ (item.StartTime).slice(0, 10) }} 至 {{ (item.EndTime).slice(0, 10) }}</p>
         <p><span>地點</span>{{ item.Location }}</p>
@@ -53,7 +53,7 @@ export default {
   .cardImg {
     margin: 0 16px 0 0;
     float: left;
-    background: url('../../img/imgDefault.png');
+    background: url('/img/imgDefault.png');
 
     :deep(img) {
       width: 355px;

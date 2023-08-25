@@ -70,13 +70,13 @@ export default {
         <swiper-slide class="slide" v-for="(item, index) in otherData" :key="index">
             <a href="#" @click.prevent="getProduct(item.ScenicSpotID)">
                 <div class="swiperImg">
-                    <img v-if="!item.Picture.PictureUrl1" src="../../img/imgDefault.png" alt="預設圖片">
+                    <img v-if="!item.Picture.PictureUrl1" src="/img/imgDefault.png" alt="預設圖片">
                     <img v-else class="swiperImg" :src="item.Picture.PictureUrl1" :alt="item.Picture.PictureDescription1">
                 </div>
                 <div class="swiperTextContent">
                     <h4 v-if="titleName === 'ScenicSpotName'">{{ item.ScenicSpotName }}</h4>
                     <p>
-                        <img class="landMark" src="../../img/landMark.png" alt="地點icon">
+                        <img class="landMark" src="/img/landMark.png" alt="地點icon">
                         {{ item.Address }}
                     </p>
                 </div>
@@ -98,7 +98,7 @@ export default {
 }
 
 .swiperImg {
-    background: url('../../img/imgDefault.png');
+    background: url('/img/imgDefault.png');
     :deep img {
         height: 280px;
         object-fit: cover;

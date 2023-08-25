@@ -45,7 +45,7 @@ nav {
     a {
       width: 218px;
       height: 71px;
-      background: url('../img/logo.png') no-repeat;
+      background: url('/img/logo.png') no-repeat;
       text-indent: 101%;
       /*首行縮排*/
       overflow: hidden;

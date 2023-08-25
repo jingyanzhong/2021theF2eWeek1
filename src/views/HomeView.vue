@@ -58,32 +58,32 @@ export default {
     <div class="container">
       <section>
         <h3 class="title">
-          <img src="../../img/icon1.png" alt="精選活動icon">
+          <img src="/img/icon1.png" alt="精選活動icon">
           精選活動
         </h3>
         <CardItem :jData="jData" @get-product="getProduct"></CardItem>
         <RouterLink to="/activity" class="more">
-          <img src="../../img/more.png" alt="more">
+          <img src="/img/more.png" alt="more">
         </RouterLink>
       </section>
       <section>
         <h3 class="title">
-          <img src="../../img/icon2.png" alt="熱門景點icon">
+          <img src="/img/icon2.png" alt="熱門景點icon">
           熱門景點
         </h3>
         <SwiperCard :jData="spotData"></SwiperCard>
         <RouterLink to="/spots" class="more">
-          <img src="../../img/more.png" alt="more">
+          <img src="/img/more.png" alt="more">
         </RouterLink>
       </section>
       <section>
         <h3 class="title">
-          <img src="../../img/icon3.png" alt="推薦美食icon">
+          <img src="/img/icon3.png" alt="推薦美食icon">
           推薦美食
         </h3>
         <SwiperCard :jData="restaurantData"></SwiperCard>
         <RouterLink to="/foods" class="more">
-          <img src="../../img/more.png" alt="more">
+          <img src="/img/more.png" alt="more">
         </RouterLink>
       </section>
     </div>

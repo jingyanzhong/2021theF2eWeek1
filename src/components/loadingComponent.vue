@@ -7,7 +7,7 @@ export default {
 </script>
 <template>
     <div class="loading" v-if="this.isLoading">
-        <img src="../../img/loadingIcon.png" alt="loadingIcon">
+        <img src="/img/loadingIcon.png" alt="loadingIcon">
         <p>LOADING...</p>
     </div>
 </template>

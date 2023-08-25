@@ -33,7 +33,7 @@ export default {
     <div class="container">
       <section v-if="activityData[0]">
         <div class="swiperImg">
-          <img v-if="!activityData[0].Picture.PictureUrl1" src="../../img/imgDefault.png" alt="預設圖片">
+          <img v-if="!activityData[0].Picture.PictureUrl1" src="/img/imgDefault.png" alt="預設圖片">
           <SwiperThumbs v-else :imgs="activityData[0].Picture"></SwiperThumbs>
         </div>
         <div class="activityText">
@@ -54,7 +54,7 @@ export default {
       </section>
       <section class="swiperOther" v-if="activityData[0]">
         <h4>
-          <img src="../../img/goodIcon.png" alt="其他推薦icon">
+          <img src="/img/goodIcon.png" alt="其他推薦icon">
           其他推薦</h4>
         <SwiperOther :city="activityData[0].City" :title-name="'ActivityName'"></SwiperOther>
       </section>

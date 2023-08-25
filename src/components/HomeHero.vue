@@ -17,7 +17,7 @@
   justify-content: center;
   align-items: center;
   height: 450px;
-  background: url(../../img/banner1.png) center center no-repeat;
+  background: url(/img/banner1.png) center center no-repeat;
   background-position: cover;
 }
 .searchClass {

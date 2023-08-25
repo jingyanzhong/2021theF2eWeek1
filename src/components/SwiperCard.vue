@@ -62,7 +62,7 @@ export default {
             <div class="swiperTextContent">
                 <h4>{{ item.RestaurantName }}</h4>
                 <p>
-                    <img class="landMark" src="../../img/landMark.png" alt="地點icon">
+                    <img class="landMark" src="/img/landMark.png" alt="地點icon">
                     {{ item.Address }}
                 </p>
             </div>
