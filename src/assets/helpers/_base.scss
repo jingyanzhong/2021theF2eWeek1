@@ -2,6 +2,7 @@ body {
     line-height: 1.5;
     font-family: 'Noto Sans TC', sans-serif;
     background: $light;
+    margin: 0;
 }
 h3 {
     font-size: $fz-xl;
@@ -35,6 +36,12 @@ img {
 .container {
     max-width: 1330px;
     margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+    .container {
+        margin: 0 20px;
+    }
 }
 
 //main

@@ -34,4 +34,14 @@ export default {
     letter-spacing: 6px;
   }
 }
+
+@media (max-width: 768px){
+  .hero {
+    height: 200px;
+    img {
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
 </style>

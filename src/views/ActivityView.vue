@@ -25,11 +25,11 @@ export default {
   methods: {
     ...mapActions(renderStore, ['showPage', 'filterShowData', 'getAllActivityData']),
     ...mapActions(filterStore, ['filterArea', 'filterClass']),
-    getProduct (id) {
+    getProduct(id) {
       this.$router.push(`/activity/${id}`)
     }
   },
-  created () {
+  created() {
     this.getAllActivityData()
     filter.areaSearch = ''
   }
@@ -47,7 +47,7 @@ export default {
             d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
         </svg>
         <input type="search" name="areaSearch" id="areaSearch" placeholder="所有縣市" :value="areaSearch"
-          @keyup.enter="(evt) => filterArea('activity' ,evt)">
+          @keyup.enter="(evt) => filterArea('activity', evt)">
       </label>
       <div class="category">
         <ul class="categoryList">
@@ -169,4 +169,79 @@ export default {
   margin: 0 -20px;
 }
 
+@media (max-width: 768px) {
+  .searchIcon {
+    left: 20px;
+    top: 15px;
+    color: rgba(242, 153, 74, 1);
+  }
+
+  #areaSearch {
+    display: block;
+    width: 728px;
+    margin: 50px auto 0;
+  }
+
+  .categoryList {
+    li {
+      a {
+        font-size: $fz-l;
+      }
+    }
+  }
+
+  .categorySelect {
+
+    .selectIcon {
+      top: 11px;
+    }
+
+    select {
+      font-size: $fz-l;
+      padding: 12px 12px 12px 46px;
+      border-radius: $radius-l;
+      box-shadow: $shadow;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  #areaSearch {
+    width: 328px;
+  }
+
+  .category {
+    margin-top: 50px;
+    margin-bottom: 55px;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid rgba(189, 189, 189, 1);
+  }
+
+  .categoryList {
+    li {
+      margin-right: 40px;
+      a {
+        white-space: nowrap;
+        font-size: $fz-m;
+      }
+    }
+  }
+
+  .categorySelect {
+    margin-top: 20px;
+    width: 100%;
+    .selectIcon {
+      top: 11px;
+    }
+
+    select {
+      width: 100%;
+      font-size: $fz-l;
+      padding: 12px 12px 12px 46px;
+      border-radius: $radius-l;
+      box-shadow: $shadow;
+    }
+  }
+}
 </style>

@@ -30,21 +30,21 @@ export default {
         // when window width is >= 320px
         320: {
           slidesPerView: 1,
-          spaceBetween: 20,
+          spaceBetween: 10,
           slidesPerGroup: 1
         },
-        // when window width is >= 480px
-        480: {
+        // when window width is >= 768px
+        768: {
           slidesPerView: 2,
           spaceBetween: 30,
           slidesPerGroup: 2
         },
-        // when window width is >= 640px
-        640: {
+        // when window width is >= 960px
+        960: {
           slidesPerView: 4,
           spaceBetween: 68,
           slidesPerGroup: 4
-        }
+        },
       }
     }
   },

@@ -3,13 +3,13 @@ export default {
   props: {
     jData: {
       type: Object,
-      default () {
+      default() {
         return {}
       }
     }
   },
   methods: {
-    getProduct (id) {
+    getProduct(id) {
       this.$emit('get-product', id)
     }
   }
@@ -27,7 +27,8 @@ export default {
         <p v-if="item.City" class="city">
           <img src="/img/landMark.png" alt="地標icon">{{ item.City }}
         </p>
-        <p v-if="item.StartTime"><span>時間</span>{{ (item.StartTime).slice(0, 10) }} 至 {{ (item.EndTime).slice(0, 10) }}</p>
+        <p v-if="item.StartTime"><span>時間</span>{{ (item.StartTime).slice(0, 10) }} 至 {{ (item.EndTime).slice(0, 10) }}
+        </p>
         <p><span>地點</span>{{ item.Location }}</p>
         <p class="description">{{ item.Description }}</p>
         <a href="#" @click.prevent="getProduct(item.ActivityID)">活動詳情</a>
@@ -64,6 +65,7 @@ export default {
 
   :deep(.text) {
     padding: 16px 21px;
+
     // display: flex;
     // flex-direction: column;
     h4 {
@@ -78,18 +80,21 @@ export default {
     span {
       padding-right: 7px;
     }
+
     .city {
       display: flex;
       align-items: center;
-      font-size:$fz-m;
+      font-size: $fz-m;
       color: $primary;
       font-weight: $fw-b;
       margin-bottom: 8px;
+
       img {
         width: 12px;
         margin-right: 4px;
       }
     }
+
     .description {
       margin-top: 10px;
       padding-bottom: 60px;
@@ -107,6 +112,33 @@ export default {
       bottom: 16px;
       right: 20px;
     }
+  }
+}
+
+@media (max-width: 768px) {
+  .cardList {
+    justify-content: space-between;
+    margin: 0;
+  }
+
+  .cardItem {
+    width: calc(50% - 20px);
+    margin: 0 0 54px;
+
+    .cardImg {
+      margin: 0 0 16px 0;
+
+      :deep(img) {
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .cardItem {
+    width: 100%;
+    margin: 0 0 54px;
   }
 }
 </style>

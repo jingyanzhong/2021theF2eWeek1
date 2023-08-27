@@ -31,7 +31,7 @@ export default {
       })
       this.$http.get(spotApi).then((res) => {
         this.spotData = res.data
-        // console.log(this.spotData)
+        console.log(this.spotData)
       })
       this.$http.get(restaurantApi).then((res) => {
         this.restaurantData = res.data
