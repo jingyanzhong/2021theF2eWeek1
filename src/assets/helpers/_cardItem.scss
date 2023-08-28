@@ -1,0 +1,133 @@
+.cardList {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 0 auto;
+}
+
+.cardItem {
+    position: relative;
+    // display: flex;
+    background: #fff;
+    width: calc(50% - 20px);
+    margin: 0 0 54px;
+
+    .cardImg {
+        margin: 0 16px 0 0;
+        float: left;
+        background: url('/img/imgDefault.png');
+
+        :deep(img) {
+            width: 355px;
+            height: 300px;
+            object-fit: cover;
+        }
+    }
+
+    :deep(.text) {
+        padding: 16px 21px;
+
+        // display: flex;
+        // flex-direction: column;
+        h4 {
+            margin-bottom: 10px;
+        }
+
+        h4,
+        span {
+            font-weight: $fw-b;
+        }
+
+        span {
+            padding-right: 7px;
+        }
+
+        .city {
+            display: flex;
+            align-items: center;
+            font-size: $fz-m;
+            color: $primary;
+            font-weight: $fw-b;
+            margin-bottom: 8px;
+
+            img {
+                width: 12px;
+                margin-right: 4px;
+            }
+        }
+
+        .description {
+            margin-top: 10px;
+            padding-bottom: 60px;
+        }
+
+        a {
+            position: absolute;
+            display: inline-block;
+            background: $secondary;
+            border-radius: $radius-m;
+            text-align: center;
+            color: #fff;
+            padding: 5px 34px;
+            margin-top: 16px;
+            bottom: 16px;
+            right: 20px;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+
+    .cardItem {
+        .cardImg {
+            float: none;
+            margin: 0 0 16px 0;
+
+            :deep(img) {
+                width: 100%;
+            }
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .mobile-hidden {
+        display: none !important;
+    }
+
+    .cardItem {
+        width: 100%;
+        margin: 0 0 24px;
+
+        :deep(.text) {
+            padding: 10px;
+
+            h4 {
+                font-size: $fz-m;
+            }
+
+            p {
+                font-size: $fz-s;
+            }
+
+            span {
+                padding-right: 6px;
+            }
+            .address {
+                padding-bottom: 60px;
+            }
+            a {
+                position: absolute;
+                display: inline-block;
+                background: $secondary;
+                border-radius: $radius-m;
+                text-align: center;
+                color: #fff;
+                padding: 5px 34px;
+                margin-top: 16px;
+                bottom: 16px;
+                right: 20px;
+            }
+        }
+    }
+}

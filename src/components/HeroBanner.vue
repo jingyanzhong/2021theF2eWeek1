@@ -44,4 +44,10 @@ export default {
     }
   }
 }
+
+@media (max-width: 767px){
+  .hero {
+    height: 360px;
+  }
+}
 </style>

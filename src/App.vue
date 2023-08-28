@@ -2,14 +2,17 @@
 import { RouterLink, RouterView } from 'vue-router'
 
 export default {
-  data() {
+  data () {
     return {
       navToggle: false
     }
   },
   methods: {
-    mobileNavToggle() {
+    mobileNavToggle () {
       this.navToggle = !this.navToggle
+    },
+    mobileNavNone () {
+      this.navToggle = false
     }
   }
 }
@@ -21,17 +24,17 @@ export default {
       <h1>
         <RouterLink to="/">遊台灣</RouterLink>
       </h1>
-      <ul class="nav-link" :class="{'active' : navToggle}">
-        <li>
+      <ul class="nav-link" :class="{ 'active': navToggle }">
+        <li @click="mobileNavNone">
           <RouterLink to="/activity">精選活動</RouterLink>
         </li>
-        <li>
+        <li @click="mobileNavNone">
           <RouterLink to="/spots">全台景點</RouterLink>
         </li>
-        <li>
+        <li @click="mobileNavNone">
           <RouterLink to="/foods">探索美食</RouterLink>
         </li>
-        <li>
+        <li @click="mobileNavNone">
           <RouterLink to="/hotel">住宿飯店</RouterLink>
         </li>
       </ul>
@@ -94,7 +97,6 @@ nav {
   }
 }
 
-
 .footer {
   padding: 42px 0;
   text-align: center;
@@ -106,7 +108,6 @@ nav {
 
 @media (max-width: 768px) {
   nav {
-
 
     h1 {
       a {
@@ -138,6 +139,7 @@ nav {
       li {
         margin-left: 0;
         padding: 8px;
+
         a {
           color: #000;
         }

@@ -30,20 +30,20 @@ export default {
         // when window width is >= 320px
         320: {
           slidesPerView: 1,
-          spaceBetween: 20,
+          spaceBetween: 10,
           slidesPerGroup: 1
         },
-        // when window width is >= 480px
-        480: {
+        // when window width is >= 768px
+        768: {
           slidesPerView: 2,
           spaceBetween: 30,
           slidesPerGroup: 2
         },
-        // when window width is >= 640px
-        640: {
-          slidesPerView: 3,
+        // when window width is >= 960px
+        960: {
+          slidesPerView: 4,
           spaceBetween: 68,
-          slidesPerGroup: 3
+          slidesPerGroup: 4
         }
       },
       otherData: {}
@@ -66,23 +66,23 @@ export default {
 }
 </script>
 <template>
-    <swiper :slides-per-view="3" navigation :autoplay="false" :breakpoints="breakpoints">
-        <swiper-slide class="slide" v-for="(item, index) in otherData" :key="index">
-            <a href="#" @click.prevent="getProduct(item.HotelID)">
-                <div class="swiperImg">
-                    <img v-if="!item.Picture.PictureUrl1" src="/img/imgDefault.png" alt="預設圖片">
-                    <img v-else class="swiperImg" :src="item.Picture.PictureUrl1" :alt="item.Picture.PictureDescription1">
-                </div>
-                <div class="swiperTextContent">
-                    <h4 v-if="titleName === 'ScenicSpotName'">{{ item.HotelName }}</h4>
-                    <p>
-                        <img class="landMark" src="/img/landMark.png" alt="地點icon">
-                        {{ item.Address }}
-                    </p>
-                </div>
-            </a>
-        </swiper-slide>
-    </swiper>
+  <swiper :slides-per-view="3" navigation :autoplay="false" :breakpoints="breakpoints">
+    <swiper-slide class="slide" v-for="(item, index) in otherData" :key="index">
+      <a href="#" @click.prevent="getProduct(item.HotelID)">
+        <div class="swiperImg">
+          <img v-if="!item.Picture.PictureUrl1" src="/img/imgDefault.png" alt="預設圖片">
+          <img v-else class="swiperImg" :src="item.Picture.PictureUrl1" :alt="item.Picture.PictureDescription1">
+        </div>
+        <div class="swiperTextContent">
+          <h4 v-if="titleName === 'ScenicSpotName'">{{ item.HotelName }}</h4>
+          <p>
+            <img class="landMark" src="/img/landMark.png" alt="地點icon">
+            {{ item.Address }}
+          </p>
+        </div>
+      </a>
+    </swiper-slide>
+  </swiper>
 </template>
 <style lang="scss" scoped>
 // .swiper-container {
@@ -90,43 +90,44 @@ export default {
 // }
 
 .slide {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 24px;
-    background: #fff;
-    height: auto;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 24px;
+  background: #fff;
+  height: auto;
 }
 
 .swiperImg {
-    background: url('/img/imgDefault.png');
-    :deep img {
-        height: 280px;
-        object-fit: cover;
+  background: url('/img/imgDefault.png');
 
-    }
+  :deep img {
+    height: 280px;
+    object-fit: cover;
+
+  }
 }
 
 .swiperTextContent {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 20px 13px;
+
+  :deep(h4) {
+    font-weight: $fw-b;
+  }
+
+  :deep(p) {
+    color: $secondary;
     display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    padding: 20px 13px;
+    align-items: center;
+    margin-top: auto;
+  }
 
-    :deep(h4) {
-        font-weight: $fw-b;
-    }
-
-    :deep(p) {
-        color: $secondary;
-        display: flex;
-        align-items: center;
-        margin-top: auto;
-    }
-
-    :deep(.landMark) {
-        width: 14px;
-        height: 18px;
-        margin-right: 8px;
-    }
+  :deep(.landMark) {
+    width: 14px;
+    height: 18px;
+    margin-right: 8px;
+  }
 }
 </style>

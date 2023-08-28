@@ -25,11 +25,11 @@ export default {
   methods: {
     ...mapActions(renderStore, ['showPage', 'filterShowData', 'getAllActivityData']),
     ...mapActions(filterStore, ['filterArea', 'filterClass']),
-    getProduct(id) {
+    getProduct (id) {
       this.$router.push(`/activity/${id}`)
     }
   },
-  created() {
+  created () {
     this.getAllActivityData()
     filter.areaSearch = ''
   }
@@ -50,20 +50,22 @@ export default {
           @keyup.enter="(evt) => filterArea('activity', evt)">
       </label>
       <div class="category">
-        <ul class="categoryList">
-          <li class="active">
-            <RouterLink to="/activity">精選活動</RouterLink>
-          </li>
-          <li>
-            <RouterLink to="/spots">全台景點</RouterLink>
-          </li>
-          <li>
-            <RouterLink to="/foods">探索美食</RouterLink>
-          </li>
-          <li>
-            <RouterLink to="/hotel">住宿飯店</RouterLink>
-          </li>
-        </ul>
+        <div class="scroll">
+          <ul class="categoryList">
+            <li class="active">
+              <RouterLink to="/activity">精選活動</RouterLink>
+            </li>
+            <li>
+              <RouterLink to="/spots">全台景點</RouterLink>
+            </li>
+            <li>
+              <RouterLink to="/foods">探索美食</RouterLink>
+            </li>
+            <li>
+              <RouterLink to="/hotel">住宿飯店</RouterLink>
+            </li>
+          </ul>
+        </div>
         <div class="categorySelect">
           <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor"
             class="selectIcon bi bi-list-ul" viewBox="0 0 16 16">
@@ -90,158 +92,5 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-.areaSearchLabel {
-  position: relative;
-}
-
-.searchIcon {
-  position: absolute;
-  left: 20px;
-  top: 1px;
-  color: rgba(242, 153, 74, 1);
-}
-
-#areaSearch {
-  width: 100%;
-  height: 55px;
-  border: 0;
-  border-radius: $radius-xl;
-  box-shadow: $shadow;
-  padding: 0 54px;
-  font-size: $fz-l;
-  margin-top: 85px;
-}
-
-.category {
-  margin-top: 50px;
-  margin-bottom: 55px;
-  display: flex;
-  border-bottom: 1px solid rgba(189, 189, 189, 1);
-}
-
-.categoryList {
-  display: flex;
-  margin-right: auto;
-
-  li {
-    padding-bottom: 9.5px;
-    margin-right: 55px;
-    border-bottom: 8px solid transparent;
-    transition: all .5s;
-
-    a {
-      font-size: $fz-xl;
-      font-weight: $fw-b;
-      color: #000;
-      background: transparent;
-    }
-
-    &:hover,
-    &.active {
-      border-bottom: 8px solid $secondary;
-    }
-  }
-}
-
-.categorySelect {
-  position: relative;
-
-  .selectIcon {
-    position: absolute;
-    top: 17px;
-    left: 15px;
-    color: $info;
-  }
-
-  select {
-    font-size: $fz-xl;
-    font-weight: $fw-b;
-    padding: 15px 15px 15px 46px;
-    border: 0;
-    border-radius: $radius-xl;
-    box-shadow: $shadow;
-  }
-}
-
-.activityCardList {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0 -20px;
-}
-
-@media (max-width: 768px) {
-  .searchIcon {
-    left: 20px;
-    top: 15px;
-    color: rgba(242, 153, 74, 1);
-  }
-
-  #areaSearch {
-    display: block;
-    width: 728px;
-    margin: 50px auto 0;
-  }
-
-  .categoryList {
-    li {
-      a {
-        font-size: $fz-l;
-      }
-    }
-  }
-
-  .categorySelect {
-
-    .selectIcon {
-      top: 11px;
-    }
-
-    select {
-      font-size: $fz-l;
-      padding: 12px 12px 12px 46px;
-      border-radius: $radius-l;
-      box-shadow: $shadow;
-    }
-  }
-}
-
-@media (max-width: 767px) {
-  #areaSearch {
-    width: 328px;
-  }
-
-  .category {
-    margin-top: 50px;
-    margin-bottom: 55px;
-    display: flex;
-    flex-direction: column;
-    border-bottom: 1px solid rgba(189, 189, 189, 1);
-  }
-
-  .categoryList {
-    li {
-      margin-right: 40px;
-      a {
-        white-space: nowrap;
-        font-size: $fz-m;
-      }
-    }
-  }
-
-  .categorySelect {
-    margin-top: 20px;
-    width: 100%;
-    .selectIcon {
-      top: 11px;
-    }
-
-    select {
-      width: 100%;
-      font-size: $fz-l;
-      padding: 12px 12px 12px 46px;
-      border-radius: $radius-l;
-      box-shadow: $shadow;
-    }
-  }
-}
+@import '../assets/helpers/utilities.scss';
 </style>

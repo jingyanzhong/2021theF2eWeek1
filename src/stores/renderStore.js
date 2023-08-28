@@ -60,9 +60,9 @@ export default defineStore('renderStore', {
     showPage (data) {
       const totalPage = Math.ceil(data.length / 20)
       this.page.totalPage = totalPage
-      this.filterShowData(data)
+      this.filterShowData(1, data)
     },
-    filterShowData (data, page = 1) {
+    filterShowData (page = 1, data = this.jData) {
       this.filterData = []
       this.page.currentPage = page
       this.page.showPageStart = page - 3

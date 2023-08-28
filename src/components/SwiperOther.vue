@@ -44,7 +44,7 @@ export default {
           slidesPerView: 4,
           spaceBetween: 68,
           slidesPerGroup: 4
-        },
+        }
       },
       otherData: {}
     }

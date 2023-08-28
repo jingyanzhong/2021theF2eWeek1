@@ -55,7 +55,8 @@ export default {
       <section class="swiperOther" v-if="activityData[0]">
         <h4>
           <img src="/img/goodIcon.png" alt="其他推薦icon">
-          其他推薦</h4>
+          其他推薦
+        </h4>
         <SwiperOther :city="activityData[0].City" :title-name="'ActivityName'"></SwiperOther>
       </section>
     </div>
@@ -65,25 +66,32 @@ export default {
 <style lang="scss" scoped>
 main {
   margin-top: 60px;
+
   section {
     display: flex;
     margin-bottom: 60px;
+
     .swiperImg {
       width: calc(55% - 60px);
       margin-right: auto;
     }
+
     .activityText {
       width: 45%;
+
       h3 {
         margin-bottom: 24px;
         font-weight: $fw-b;
       }
+
       h4 {
         color: $primary;
         font-weight: $fw-b;
       }
+
       p {
         margin-bottom: 24px;
+
         span {
           border-radius: $radius-m;
           border: 2px solid rgba(232, 212, 162, 1);
@@ -93,17 +101,52 @@ main {
       }
     }
   }
+
   .swiperOther {
     display: block;
+
     h4 {
       display: flex;
       align-items: center;
       margin-bottom: 30px;
       font-weight: $fw-b;
+
       img {
-          width: 24px;
-          margin-right: 4px;
+        width: 24px;
+        margin-right: 4px;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  main {
+    section {
+      .swiperImg {
+        width: calc(55% - 30px);
+      }
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  main {
+    margin-top: 30px;
+
+    section {
+      flex-direction: column;
+
+      .swiperImg {
+        width: 100%;
+      }
+
+      .activityText {
+        width: 100%;
+
+        h3 {
+          margin-top: 24px;
         }
+      }
     }
   }
 }

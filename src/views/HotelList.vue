@@ -74,48 +74,5 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-main {
-  margin-top: 60px;
-  section {
-    display: flex;
-    margin-bottom: 60px;
-    .swiperImg {
-      width: calc(55% - 60px);
-      margin-right: auto;
-    }
-    .activityText {
-      width: 45%;
-      h3 {
-        margin-bottom: 24px;
-        font-weight: $fw-b;
-      }
-      h4 {
-        color: $primary;
-        font-weight: $fw-b;
-      }
-      p {
-        margin-bottom: 24px;
-        span {
-          border-radius: $radius-m;
-          border: 2px solid rgba(232, 212, 162, 1);
-          margin-right: 8px;
-          padding: 4px 8px;
-        }
-      }
-    }
-  }
-  .swiperOther {
-    display: block;
-    h4 {
-      display: flex;
-      align-items: center;
-      margin-bottom: 30px;
-      font-weight: $fw-b;
-      img {
-          width: 24px;
-          margin-right: 4px;
-        }
-    }
-  }
-}
+@import '../assets/helpers/productList.scss'
 </style>
