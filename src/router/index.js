@@ -11,7 +11,10 @@ const router = createRouter({
     {
       path: '/activity',
       name: 'activity',
-      component: () => import('../views/ActivityView.vue')
+      component: () => import('../views/ActivityView.vue'),
+      meta: {
+        keepAlive: true // 需要被缓存
+      }
     },
     {
       path: '/activity/:activityId',
@@ -20,7 +23,10 @@ const router = createRouter({
     {
       path: '/spots',
       name: 'spots',
-      component: () => import('../views/SpotsView.vue')
+      component: () => import('../views/SpotsView.vue'),
+      meta: {
+        keepAlive: true // 需要被缓存
+      }
     },
     {
       path: '/spots/:spotsId',
@@ -29,7 +35,10 @@ const router = createRouter({
     {
       path: '/foods',
       name: 'foods',
-      component: () => import('../views/FoodsView.vue')
+      component: () => import('../views/FoodsView.vue'),
+      meta: {
+        keepAlive: true // 需要被缓存
+      }
     },
     {
       path: '/foods/:foodsId',
@@ -38,7 +47,10 @@ const router = createRouter({
     {
       path: '/hotel',
       name: 'hotel',
-      component: () => import('../views/HotelView.vue')
+      component: () => import('../views/HotelView.vue'),
+      meta: {
+        keepAlive: true // 需要被缓存
+      }
     },
     {
       path: '/hotel/:hotelId',

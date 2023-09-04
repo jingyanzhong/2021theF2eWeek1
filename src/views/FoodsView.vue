@@ -33,6 +33,10 @@ export default {
   created () {
     this.getAllFoodsData()
     filter.areaSearch = ''
+  },
+  beforeRouteLeave (to, from, next) {
+    to.meta.keepAlive = false
+    next()
   }
 }
 </script>

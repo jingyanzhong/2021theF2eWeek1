@@ -44,7 +44,7 @@ export default {
           slidesPerView: 4,
           spaceBetween: 68,
           slidesPerGroup: 4
-        },
+        }
       }
     }
   },
@@ -54,64 +54,64 @@ export default {
 }
 </script>
 <template>
-    <swiper :slides-per-view="4" navigation :autoplay="false" :breakpoints="breakpoints">
-        <swiper-slide class="slide" v-for="(item, index) in jData" :key="index">
-            <div class="swiperImg">
-                <img class="swiperImg" :src="item.Picture.PictureUrl1" :alt="item.Picture.PictureDescription1">
-            </div>
-            <div class="swiperTextContent">
-                <h4>{{ item.RestaurantName }}</h4>
-                <p>
-                    <img class="landMark" src="/img/landMark.png" alt="地點icon">
-                    {{ item.Address }}
-                </p>
-            </div>
-        </swiper-slide>
-    </swiper>
+  <swiper :slides-per-view="4" navigation :autoplay="false" :breakpoints="breakpoints">
+    <swiper-slide class="slide" v-for="(item, index) in jData" :key="index">
+      <div class="swiperImg">
+        <img class="swiperImg" :src="item.Picture.PictureUrl1" :alt="item.Picture.PictureDescription1">
+      </div>
+      <div class="swiperTextContent">
+        <h4>{{ item.RestaurantName }}</h4>
+        <p>
+          <img class="landMark" src="/img/landMark.png" alt="地點icon">
+          {{ item.Address }}
+        </p>
+      </div>
+    </swiper-slide>
+  </swiper>
 </template>
 
 <style lang="scss" scoped>
 .swiper-container {
-    padding: 0 85px;
+  // padding: 0 85px;
 }
 
 .slide {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 24px;
-    background: #fff;
-    height: auto;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 24px;
+  background: #fff;
+  height: auto;
 }
 
 .swiperImg {
-    :deep img {
-        height: 280px;
-        object-fit: cover;
+  :deep img {
+    height: 280px;
+    object-fit: cover;
 
-    }
+  }
 }
 
 .swiperTextContent {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 20px 13px;
+
+  :deep(h4) {
+    font-weight: $fw-b;
+  }
+
+  :deep(p) {
+    color: $secondary;
     display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    padding: 20px 13px;
+    align-items: center;
+    margin-top: auto;
+  }
 
-    :deep(h4) {
-        font-weight: $fw-b;
-    }
-
-    :deep(p) {
-        color: $secondary;
-        display: flex;
-        align-items: center;
-        margin-top: auto;
-    }
-
-    :deep(.landMark) {
-        width: 14px;
-        height: 18px;
-        margin-right: 8px;
-    }
+  :deep(.landMark) {
+    width: 14px;
+    height: 18px;
+    margin-right: 8px;
+  }
 }
 </style>

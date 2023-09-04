@@ -25,6 +25,10 @@ export default {
   created () {
     this.id = this.$route.params.foodsId
     this.getFoods()
+  },
+  beforeRouteLeave (to, from, next) {
+    to.meta.keepAlive = true
+    next()
   }
 }
 </script>

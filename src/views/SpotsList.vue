@@ -31,6 +31,10 @@ export default {
   created () {
     this.id = this.$route.params.spotsId
     this.getSpots()
+  },
+  beforeRouteLeave (to, from, next) {
+    to.meta.keepAlive = true
+    next()
   }
 }
 </script>

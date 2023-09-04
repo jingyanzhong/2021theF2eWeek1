@@ -47,7 +47,12 @@ export default {
       </button>
     </div>
   </nav>
-  <router-view :key="$route.fullPath"></router-view>
+  <router-view v-if="!$route.meta.keepAlive" />
+  <router-view v-slot="{ Component }">
+    <keep-alive>
+      <component v-if="$route.meta.keepAlive" :is="Component" :key="$route.fullPath" />
+    </keep-alive>
+  </router-view>
   <footer class="footer">
     Copyright@2021
   </footer>

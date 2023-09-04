@@ -25,6 +25,10 @@ export default {
   created () {
     this.id = this.$route.params.activityId
     this.getActivity()
+  },
+  beforeRouteLeave (to, from, next) {
+    to.meta.keepAlive = true
+    next()
   }
 }
 </script>

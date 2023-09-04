@@ -47,6 +47,10 @@ export default {
   },
   created () {
     this.getData()
+  },
+  beforeRouteLeave (to, from, next) {
+    to.meta.keepAlive = false
+    next()
   }
 }
 </script>

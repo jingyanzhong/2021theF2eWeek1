@@ -108,9 +108,15 @@
 }
 
 @media (max-width: 767px) {
+    .areaSearchLabel {
+        .searchIcon {
+            display: none;
+        }
+    }
     #areaSearch {
         width: 328px;
         margin-top: 30px;
+        padding: 0 24px;
     }
 
     .category {
@@ -140,13 +146,13 @@
     .categorySelect {
         margin-top: 20px;
         width: 100%;
-
         .selectIcon {
-            top: 11px;
+            display: none;
         }
-
+        
         select {
             width: 100%;
+            padding: 12px;
         }
     }
 }

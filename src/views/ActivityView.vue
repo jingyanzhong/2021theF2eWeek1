@@ -32,6 +32,10 @@ export default {
   created () {
     this.getAllActivityData()
     filter.areaSearch = ''
+  },
+  beforeRouteLeave (to, from, next) {
+    to.meta.keepAlive = false
+    next()
   }
 }
 </script>
